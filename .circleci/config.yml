@@ -10,4 +10,5 @@ jobs:
           name: Run tests
           command: |
             gem install bundler
+            bundle install
             bundle exec rspec
