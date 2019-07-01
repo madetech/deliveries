@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.6.3
     steps:
+      - checkout
       - run:
           name: Run tests
           command: |
