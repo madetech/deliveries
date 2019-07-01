@@ -5,7 +5,6 @@ jobs:
       - image: circleci/ruby:2.6.3
     steps:
       - run:
-          name: The First Step
+          name: Run tests
           command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+            bundle exec rspec
