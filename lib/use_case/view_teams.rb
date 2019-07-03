@@ -1,3 +1,5 @@
+require_relative '../gateway/google_spreadsheet.rb'
+
 module UseCase
   class ViewTeams
     def initialize(google_spreadsheet_gateway: google_spreadsheet_gateway)
