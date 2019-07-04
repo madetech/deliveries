@@ -19,7 +19,11 @@ module UseCase
         data[row[0]][:project] ||= []
         data[row[0]][:project] << {
           project_name: row[1],
-          person: row[2]
+          person: row[2],
+          tech_lead: row[9],
+          delivery_lead: row[10],
+          client_partner: row[11],
+          exec_sponsor: row[12]
         }
       end
       data.values
