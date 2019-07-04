@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'gateway/google_spreadsheet'
-require 'vcr'
-
 describe Gateway::GoogleSpreadsheet do
   VCR.configure do |config|
     config.cassette_library_dir = 'fixtures/vcr_cassettes'
