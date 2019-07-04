@@ -42,25 +42,36 @@
     <div class="jumbotron jumbotron-skinny">
       <div></div>
     </div>
-    
+
     <main class="container mb-5 mt-5">
       <% data.each do |client, values| %>
         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action bg-success">
+          <a class="list-group-item list-group-item-action bg-success">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1 mt-1 text-white">
                 <%= client[:client] %>
               </h5>
-              <span class="badge badge-primary badge-pill bg-success">5</span>
             </div>
           </a>
         <div class="d-flex w-100 justify-content-between">
-          <a href="#" class="list-group-item list-group-item-action">
+          <a class="list-group-item list-group-item-action">
             <% client[:project].each do |x| %>
               <h5 class="mb-1">
-                <%= x[:project_name] %>
+                <%= x[:person] %>
+                <% if x[:tech_lead] == 'TRUE' %>
+                  | <span title="Technical Lead"><i class="fas fa-users-cog text-success"></i> </span>
+                <% end %>
+                <% if x[:delivery_lead] == 'TRUE'%>
+                  | <span title="Delivery Lead"><i class="fas fa-chalkboard-teacher text-success"></i> </span>
+                <% end %>
+                <% if x[:client_partner] == 'TRUE'%>
+                  | <span title="Client Partner"><i class="fas fa-handshake text-success"></i> </span>
+                <% end %>
+                <% if x[:exec_sponsor] == 'TRUE'%>
+                  | <span title="Executive Sponsor"><i class="fas fa-user-tie text-success"></i> </span>
+                <% end %>
               </h5>
-              <%= x[:person] %>
+                <%= x[:project_name] %>
             <% end %>
           </a>
         </div>
@@ -104,5 +115,7 @@
       integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
       crossorigin="anonymous"></script>
     <script src="/assets/js/madetech-frontend.js"></script>
+
+    <script src="https://kit.fontawesome.com/5955f7bd4a.js"></script>
   </body>
 </html>

@@ -13,7 +13,7 @@ module Gateway
         scope: Google::Apis::SheetsV4::AUTH_SPREADSHEETS
       )
       spreadsheet_id = '1nX4mjdRJqceaPpfbflGn-s2pvwlVuUSLuLHyWP-4mC4'
-      range = 'Teams 4 Weeks FINAL!A1:C'
+      range = 'Teams 4 Weeks FINAL!A1:M'
 
       response = service.get_spreadsheet_values(spreadsheet_id, range)
 
