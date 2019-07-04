@@ -1,44 +1,44 @@
 # frozen_string_literal: true
 require 'use_case/view_teams'
 require 'gateway/google_spreadsheet'
+require 'vcr'
+require 'webmock/rspec'
 
 describe 'the schedule' do
-
-  let(:response) do
-    [["Amazon Web Services",
-      "LGSS Data Centre Migration",
-      "Ben Pirt",
-      "146.29",
-      "7",
-      "7",
-      "7",
-      "7",
-      "28"],
-     ["Amazon Web Services",
-      "LGSS Data Centre Migration",
-      "Robin Lacey",
-      "146.29",
-      "31.5",
-      "31.5",
-      "31.5",
-      "31.5",
-      "126"]]
+  VCR.configure do |config|
+    config.cassette_library_dir = "fixtures/vcr_cassettes"
+    config.hook_into :webmock
+    config.ignore_request {|request| request.uri == 'https://www.googleapis.com/oauth2/v4/token' }
   end
 
   let(:google_spreadsheet_gateway) { Gateway::GoogleSpreadsheet.new }
-  let(:view_teams) do
-    UseCase::ViewTeams.new(google_spreadsheet_gateway: google_spreadsheet_gateway)
-  end
+  let(:view_teams) { UseCase::ViewTeams.new(google_spreadsheet_gateway: google_spreadsheet_gateway) }
 
-  it 'views the spreadsheet' do
-    response = view_teams.execute
-    expect(response[:teams]).to
-      eq(
-        [{:client=>"Amazon Web Services",
-          :project=>
-           [{:project_name=>"LGSS Data Centre Migration", :person=>"Ben Pirt"},
-            {:project_name=>"LGSS Data Centre Migration", :person=>"Robin Lacey"}]}
-        ]
+  it 'views the first team' do
+    VCR.use_cassette("response") do
+      response = view_teams.execute
+      expect(response.first).to eq(
+        {
+          :client =>"Bob Corp",
+          :project => [
+            {
+              :person=>"George",
+              :project_name=>"Project 1"
+            },
+            {
+              :person=>"Yusuf",
+              :project_name=>"Project 1"
+              }
+            ]
+        }
       )
+      end
+    end
+
+   it 'views the first team' do
+    VCR.use_cassette("response") do
+      response = view_teams.execute
+      expect(response.first[:client]).to eq("Bob Corp")
+    end
   end
 end

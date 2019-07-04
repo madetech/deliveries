@@ -3,10 +3,18 @@ require 'google_drive'
 module Gateway
   class GoogleSpreadsheet
     def all
-      session = GoogleDrive::Session.from_config('config.json')
-      ws = session.spreadsheet_by_key('1nX4mjdRJqceaPpfbflGn-s2pvwlVuUSLuLHyWP-4mC4').worksheet_by_title('Teams 4 Weeks FINAL')
+      service = Google::Apis::SheetsV4::SheetsService.new
+      service.client_options.application_name = 'Some application name'
+      service.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
+        json_key_io: File.open('keyfile.json'),
+        scope: Google::Apis::SheetsV4::AUTH_SPREADSHEETS)
 
-      ws.rows.each { |row| row.first(3) }.drop(2)
+      spreadsheet_id = '1nX4mjdRJqceaPpfbflGn-s2pvwlVuUSLuLHyWP-4mC4'
+      range = 'Teams 4 Weeks FINAL!A1:C'
+
+      response = service.get_spreadsheet_values(spreadsheet_id, range)
+
+      response.values.drop(2)
     end
   end
 end

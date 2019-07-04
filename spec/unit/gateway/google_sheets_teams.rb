@@ -1,24 +1,34 @@
 # frozen_string_literal: true
 require 'gateway/google_spreadsheet'
+require 'vcr'
 
 describe Gateway::GoogleSpreadsheet do
 
-  let(:response) do
-    [["Amazon Web Services",
-      "LGSS Data Centre Migration",
-      "Ben Pirt",
-     ["Amazon Web Services",
-      "LGSS Data Centre Migration",
-      "Robin Lacey"]]]
+  VCR.configure do |config|
+    config.cassette_library_dir = "fixtures/vcr_cassettes"
+    config.hook_into :webmock
+    config.ignore_request {|request| request.uri == 'https://www.googleapis.com/oauth2/v4/token' }
   end
 
-  it 'can show all teams' do
-    teams = described_class.new.all
+  context 'getting the first clients data' do
+    VCR.use_cassette("response") do
+      response = described_class.new.all
 
-    teams[0].tap do |row|
-      expect(row[0]).to eq('Amazon Web Services')
-      expect(row[1]).to eq('LGSS Data Centre Migration')
-      expect(row[2]).to eq('Ben Pirt')
+      it 'can show the first client' do
+        expect(response[0][0]).to eq("Bob Corp")
+      end
+
+      it 'can show the first active work stream' do
+          expect(response[0][1]).to eq("Project 1")
+      end
+
+      it 'can show the people working on the project' do
+        expect(response[0][2]).to eq("George")
+      end
+
+      it 'can show the people working on the project' do
+        expect(response[1][2]).to eq("Yusuf")
+      end
     end
   end
 end
