@@ -1,0 +1,113 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sheets.googleapis.com/v4/spreadsheets/1nX4mjdRJqceaPpfbflGn-s2pvwlVuUSLuLHyWP-4mC4/values/Teams%204%20Weeks%20FINAL!A1:M
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Some application name/0.0.0 google-api-ruby-client/0.30.4 Mac OS X/10.14.5
+        (gzip)
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Thu, 04 Jul 2019 10:32:50 GMT
+      Authorization:
+      - Bearer ya29.c.Elk7B3iosh5S8sJV9T-uxXK1ASN3wj0KRQD2XCxDelN-Lcqd2DZrWlMeKm-6d4X8Vew6JrYIz-pmTCl7xy55vMQBTeUVt0t79svzOWbOVzZzLsgUCIaiJXbVWg
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Content-Encoding:
+      - gzip
+      Date:
+      - Thu, 04 Jul 2019 10:32:50 GMT
+      Server:
+      - ESF
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,43,39"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "range": "'Teams 4 Weeks FINAL'!A1:M1000",
+          "majorDimension": "ROWS",
+          "values": [
+            [
+              "SUM of HoursPerWeek",
+              "",
+              "",
+              "",
+              "WeekNumber"
+            ],
+            [
+              "Client",
+              "Project",
+              "Person",
+              "HourlyRate",
+              "27",
+              "28",
+              "29",
+              "30",
+              "Grand Total",
+              "Technical Lead",
+              "Delivery Lead",
+              "Client Partner",
+              "Executive Sponsor"
+            ],
+            [
+              "Amazon Web Services",
+              "LGSS Data Centre Migration",
+              "Ben Pirt",
+              "146.29",
+              "7",
+              "7",
+              "7",
+              "7",
+              "28",
+              "TRUE",
+              "TRUE",
+              "TRUE",
+              "TRUE"
+            ],
+            [
+              "Amazon Web Services",
+              "LGSS Data Centre Migration",
+              "Robin Lacey",
+              "146.29",
+              "7",
+              "7",
+              "7",
+              "7",
+              "28",
+              "TRUE",
+              "FALSE",
+              "FALSE",
+              "TRUE"
+            ]
+          ]
+        }
+    http_version:
+  recorded_at: Thu, 04 Jul 2019 10:32:50 GMT
+recorded_with: VCR 5.0.0
