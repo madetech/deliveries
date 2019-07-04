@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require 'use_case/view_teams'
-require 'gateway/google_spreadsheet'
-require 'vcr'
-require 'webmock/rspec'
-
 describe 'view deliverys' do
   VCR.configure do |config|
     config.cassette_library_dir = 'fixtures/vcr_cassettes'
