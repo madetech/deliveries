@@ -44,15 +44,21 @@
     </div>
 
     <main class="container mb-5 mt-5">
+    <div class="md-form mt-0">
+      <input class="form-control" type="text" id="Search" onkeyup="search()" placeholder="Search for a client, project or name..."> 
+      </div>
+      <br />
       <% data.each do |client, values| %>
+            <div class="target">
         <div class="list-group">
           <a class="list-group-item list-group-item-action bg-success">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1 mt-1 text-white">
                 <%= client[:client] %>
               </h5>
-            </div>
+              </div>
           </a>
+          </div>
         <div class="d-flex w-100 justify-content-between">
           <a class="list-group-item list-group-item-action">
             <% client[:project].each do |x| %>
@@ -75,7 +81,8 @@
             <% end %>
           </a>
         </div>
-        <hr />
+        <br />
+      </div>
       <% end %>
     </main>
 
@@ -109,6 +116,22 @@
         </div>
       </div>
     </footer>
+
+<script>
+function search() {
+  var input = document.getElementById("Search");
+  var filter = input.value.toLowerCase();
+  var nodes = document.getElementsByClassName('target');
+
+  for (i = 0; i < nodes.length; i++) {
+    if (nodes[i].innerText.toLowerCase().includes(filter)) {
+      nodes[i].style.display = "block";
+    } else {
+      nodes[i].style.display = "none";
+    }
+  }
+}
+</script>
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
