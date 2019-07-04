@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require_relative 'lib/use_case/view_teams.rb'
 

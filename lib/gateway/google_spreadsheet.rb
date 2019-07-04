@@ -1,4 +1,8 @@
-require 'google_drive'
+# frozen_string_literal: true
+
+require 'google/apis/sheets_v4'
+require 'googleauth'
+require 'dotenv/load'
 
 module Gateway
   class GoogleSpreadsheet
@@ -6,9 +10,8 @@ module Gateway
       service = Google::Apis::SheetsV4::SheetsService.new
       service.client_options.application_name = 'Some application name'
       service.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
-        json_key_io: File.open('keyfile.json'),
-        scope: Google::Apis::SheetsV4::AUTH_SPREADSHEETS)
-
+        scope: Google::Apis::SheetsV4::AUTH_SPREADSHEETS
+      )
       spreadsheet_id = '1nX4mjdRJqceaPpfbflGn-s2pvwlVuUSLuLHyWP-4mC4'
       range = 'Teams 4 Weeks FINAL!A1:C'
 

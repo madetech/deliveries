@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../gateway/google_spreadsheet.rb'
 
 module UseCase
