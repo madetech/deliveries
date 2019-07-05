@@ -45,7 +45,7 @@
 
     <main class="container mb-5 mt-5">
     <div class="md-form mt-0">
-      <input class="form-control" type="text" id="Search" onkeyup="search()" placeholder="Search for a client, project or name..."> 
+      <input class="form-control" type="text" id="Search" onkeyup="search()" placeholder="Search for a client, project or name...">
       </div>
       <br />
       <% data.each do |client, values| %>
@@ -65,16 +65,16 @@
               <h5 class="mb-1">
                 <%= x[:person] %>
                 <% if x[:tech_lead] == 'TRUE' %>
-                  | <span title="Technical Lead"><i class="fas fa-users-cog text-success"></i> </span>
+                  | <span class="badge badge-pill badge-dark">Technical Lead</span>
                 <% end %>
                 <% if x[:delivery_lead] == 'TRUE'%>
-                  | <span title="Delivery Lead"><i class="fas fa-chalkboard-teacher text-success"></i> </span>
+                  | <span class="badge badge-pill badge-danger">Delivery Lead</span>
                 <% end %>
                 <% if x[:client_partner] == 'TRUE'%>
-                  | <span title="Client Partner"><i class="fas fa-handshake text-success"></i> </span>
+                  | <span class="badge badge-pill badge-warning">Client Partner</span>
                 <% end %>
                 <% if x[:exec_sponsor] == 'TRUE'%>
-                  | <span title="Executive Sponsor"><i class="fas fa-user-tie text-success"></i> </span>
+                  | <span class="badge badge-pill badge-info">Executive Sponsor</span>
                 <% end %>
               </h5>
                 <%= x[:project_name] %>
