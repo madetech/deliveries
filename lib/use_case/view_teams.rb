@@ -17,6 +17,8 @@ class UseCase::ViewTeams
       data[row[0]][:project] << {
         project_name: row[1],
         person: row[2],
+        start_date: row[3],
+        end_date: row[4],
         tech_lead: row[9],
         delivery_lead: row[10],
         client_partner: row[11],
