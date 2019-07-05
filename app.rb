@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+require 'date'
+require 'dotenv/load'
 require 'sinatra'
 require 'zeitwerk'
-require 'dotenv/load'
 
 loader = Zeitwerk::Loader.new
 loader.push_dir("#{__dir__}/lib/")

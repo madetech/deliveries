@@ -10,7 +10,6 @@ describe 'the schedule' do
   let(:google_spreadsheet_gateway) { Gateway::GoogleSpreadsheet.new }
   let(:view_teams) { UseCase::ViewTeams.new(google_spreadsheet_gateway: google_spreadsheet_gateway) }
 
-
   it 'views the first client' do
     VCR.use_cassette('account_structure') do
       response = view_teams.execute
@@ -42,20 +41,20 @@ describe 'the schedule' do
   it 'views the account structure of the first person in the first workstream' do
     VCR.use_cassette('account_structure') do
       response = view_teams.execute
-      expect(response.first[:project].first[:tech_lead]).to eq('TRUE')
-      expect(response.first[:project].first[:delivery_lead]).to eq('TRUE')
-      expect(response.first[:project].first[:client_partner]).to eq('TRUE')
-      expect(response.first[:project].first[:exec_sponsor]).to eq('TRUE')
+      expect(response.first[:project].first[:tech_lead]).to eq('FALSE')
+      expect(response.first[:project].first[:delivery_lead]).to eq('FALSE')
+      expect(response.first[:project].first[:client_partner]).to eq('FALSE')
+      expect(response.first[:project].first[:exec_sponsor]).to eq('FALSE')
     end
   end
 
   it 'views the account structure of the second person in the first workstream' do
     VCR.use_cassette('account_structure') do
       response = view_teams.execute
-      expect(response.first[:project][1][:tech_lead]).to eq('TRUE')
+      expect(response.first[:project][1][:tech_lead]).to eq('FALSE')
       expect(response.first[:project][1][:delivery_lead]).to eq('FALSE')
       expect(response.first[:project][1][:client_partner]).to eq('FALSE')
-      expect(response.first[:project][1][:exec_sponsor]).to eq('TRUE')
+      expect(response.first[:project][1][:exec_sponsor]).to eq('FALSE')
     end
   end
 end

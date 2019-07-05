@@ -77,7 +77,12 @@
                   | <span class="badge badge-pill badge-info">Executive Sponsor</span>
                 <% end %>
               </h5>
-                <%= x[:project_name] %>
+              <%= x[:project_name] %>
+              <div class="float-right">
+                <% start_on, end_on = Date.strptime(x[:start_date], '%Y-%m-%d'), Date.strptime(x[:end_date], '%Y-%m-%d') %> 
+                <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
+                <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
+              </div>
             <% end %>
           </a>
         </div>
