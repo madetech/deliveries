@@ -67,17 +67,12 @@
                 <h5 class="mb-1 mt-0">
                   <%= projects %>
                   <% people.each do |dates| %>
-                  <div class="float-right">
-                    <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %> 
-                    <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
-                    <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
-                  </div>
-                  <% break %>
-                  <% end %>
-                  <% clients[:project].each do |dates| %>
                     <div class="float-right">
+                      <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %> 
+                      <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
+                      <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
                     </div>
-
+                    <% break %>
                   <% end %>
                 </h5>
                 <% people.each do |person| %>
@@ -137,13 +132,12 @@
       </div>
     </footer>
 
-    <script src="/assets/js/main.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
       crossorigin="anonymous"></script>
     <script src="/assets/js/madetech-frontend.js"></script>
-
     <script src="https://kit.fontawesome.com/5955f7bd4a.js"></script>
+    <script src="/assets/js/main.js"></script>
   </body>
 </html>
