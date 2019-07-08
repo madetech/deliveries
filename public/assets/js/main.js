@@ -1,4 +1,3 @@
-
 function search() {
   var input = document.getElementById("Search");
   var filter = input.value.toLowerCase();
