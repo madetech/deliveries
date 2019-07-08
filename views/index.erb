@@ -45,50 +45,67 @@
     </div>
 
     <main class="container mb-5 mt-5">
-    <div class="md-form mt-0">
-      <input class="form-control" type="text" id="Search" onkeyup="search()" placeholder="Search for a client, project or name...">
+      <div class="md-form mt-0">
+        <input class="form-control" type="text" id="Search" onkeyup="search()" placeholder="Search for a client, project or name...">
       </div>
       <br />
-      <% data.each do |client, values| %>
-            <div class="target">
-        <div class="list-group">
-          <a class="list-group-item list-group-item-action bg-success">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1 mt-1 text-white">
-                <%= client[:client] %>
-              </h5>
+    
+      <% data.each do |clients, _values| %>
+        <div class="target">
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action bg-success">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 mt-1 text-white">
+                  <%= clients[:client] %>
+                </h5>
               </div>
-          </a>
+            </a>
           </div>
-        <div class="d-flex w-100 justify-content-between">
-          <a class="list-group-item list-group-item-action">
-            <% client[:project].each do |x| %>
-              <h5 class="mb-1">
-                <%= x[:person] %>
-                <% if x[:tech_lead] == 'TRUE' %>
-                  | <span class="badge badge-pill badge-dark">Technical Lead</span>
+          <div class="d-flex w-100 justify-content-between">
+            <a class="list-group-item list-group-item-action mb-3">
+              <% clients[:project].group_by { |d| d[:project] }.each do |projects, people| %>
+                <h5 class="mb-1 mt-0">
+                  <%= projects %>
+                  <% people.each do |dates| %>
+                  <div class="float-right">
+                      <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %> 
+                      <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
+                      <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
+                    </div>
+                  <% break %>
+                  <% end %>
+                  <% clients[:project].each do |dates| %>
+                    <div class="float-right">
+                      <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %> 
+                      <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
+                      <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
+                    </div>
+
+                  <% end %>
+                </h5>
+                <% people.each do |person| %>
+                  <% person[:person].each do |name| %>
+                    <%= name %>
+                  <% end %>
+                  <% if person[:tech_lead] == 'TRUE' %>
+                    | <span class="badge badge-dark">Technical Lead</span>
+                  <% end %>
+                  <% if person[:delivery_lead] == 'TRUE'%>
+                    | <span class="badge badge-danger">Delivery Lead</span>
+                  <% end %>
+                  <% if person[:client_partner] == 'TRUE'%>
+                    | <span class="badge badge-warning">Client Partner</span>
+                  <% end %>
+                  <% if person[:exec_sponsor] == 'TRUE'%>
+                    | <span class="badge badge-info">Executive Sponsor</span>
+                  <% end %>
+                  <br />
                 <% end %>
-                <% if x[:delivery_lead] == 'TRUE'%>
-                  | <span class="badge badge-pill badge-danger">Delivery Lead</span>
-                <% end %>
-                <% if x[:client_partner] == 'TRUE'%>
-                  | <span class="badge badge-pill badge-warning">Client Partner</span>
-                <% end %>
-                <% if x[:exec_sponsor] == 'TRUE'%>
-                  | <span class="badge badge-pill badge-info">Executive Sponsor</span>
-                <% end %>
-              </h5>
-              <%= x[:project_name] %>
-              <div class="float-right">
-                <% start_on, end_on = Date.strptime(x[:start_date], '%Y-%m-%d'), Date.strptime(x[:end_date], '%Y-%m-%d') %> 
-                <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
-                <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
-              </div>
-            <% end %>
-          </a>
+                <br />
+              <% end %>
+            </a>
+          </div>
         </div>
-        <br />
-      </div>
       <% end %>
     </main>
 
