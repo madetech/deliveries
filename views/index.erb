@@ -68,17 +68,14 @@
                   <%= projects %>
                   <% people.each do |dates| %>
                   <div class="float-right">
-                      <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %> 
-                      <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
-                      <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
-                    </div>
+                    <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %> 
+                    <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
+                    <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
+                  </div>
                   <% break %>
                   <% end %>
                   <% clients[:project].each do |dates| %>
                     <div class="float-right">
-                      <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %> 
-                      <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
-                      <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
                     </div>
 
                   <% end %>
