@@ -12,9 +12,11 @@ loader.setup
 
 before { loader.reload }
 
+gateway = Sinatra::Application.environment == :development ? GoogleSheetsSimulator.new : Gateway::GoogleSpreadsheet.new
+
 get '/' do
   response = UseCase::ViewTeams.new(
-    google_spreadsheet_gateway: Gateway::GoogleSpreadsheet.new
+    google_spreadsheet_gateway: gateway
   ).execute
   erb :index, locals: { data: response }
 end
