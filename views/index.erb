@@ -70,8 +70,14 @@
                       <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %>
                       <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to
                       <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
-                      <% if end_on - 30 < Date.today %>
-                        <p>Project ends in the next 30 days</p>
+                      <% if end_on < Date.today %>
+                        <div class="alert alert-danger text-center">
+                          Project has ended
+                        </div>
+                      <% elsif Date.today > end_on - 30 && end_on + 30 > Date.today%>
+                        <div class="alert alert-warning text-center">
+                          Project is ending
+                        </div>
                       <% end %>
                     </div>
                     <% break %>
