@@ -1,7 +1,7 @@
 version: 2.0
 jobs:
   build:
-	working_directory: ~/teams
+working_directory: ~/teams
 	docker:
 		- image: alpine:3.7
 		- image: circleci/ruby:2.6.3
