@@ -8,9 +8,9 @@ docker:
 steps:
   - checkout
   - run:
-      name: The First Step
-      name: Run tests
-      command: |
-        gem install bundler
-        bundle install
-        bundle exec rspec
+    name: The First Step
+    name: Run tests
+    command: |
+      gem install bundler
+      bundle install
+      bundle exec rspec
