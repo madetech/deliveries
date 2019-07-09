@@ -14,14 +14,14 @@ class UseCase::ViewTeams
       }
       data[row[0]][:project] ||= []
       data[row[0]][:project] << {
-        project: row[1],
+        project_name: row[1],
         start_date: row[2],
         end_date: row[3],
         person: [row[4]],
-        tech_lead: row[9],
-        delivery_lead: row[10],
-        client_partner: row[11],
-        exec_sponsor: row[12]
+        tech_lead: row[6],
+        delivery_lead: row[7],
+        client_partner: row[8],
+        exec_sponsor: row[9]
       }
     end
 

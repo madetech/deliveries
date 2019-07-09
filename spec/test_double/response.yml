@@ -1,0 +1,133 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sheets.googleapis.com/v4/spreadsheets/1nX4mjdRJqceaPpfbflGn-s2pvwlVuUSLuLHyWP-4mC4/values/Teams%204%20Weeks%20FINAL!A1:M
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Some application name/0.0.0 google-api-ruby-client/0.30.4 Mac OS X/10.14.5
+        (gzip)
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Tue, 09 Jul 2019 10:21:43 GMT
+      Authorization:
+      - Bearer ya29.c.EllABz8jP9_isvqZTt9lFSfBbfdp0nYfgUOlptWUmhR3gwvMaU5_l6apxXFQyYoJ2CxWv3UMZqfBtT9R1fHhwHiubukMAH2McZLqQEzplry-F69mGuax3u9kEQ
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Content-Encoding:
+      - gzip
+      Date:
+      - Tue, 09 Jul 2019 10:21:44 GMT
+      Server:
+      - ESF
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,43,39"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "range": "'Teams 4 Weeks FINAL'!A1:M1000",
+          "majorDimension": "ROWS",
+          "values": [
+            [
+              "Client",
+              "Project",
+              "StartDate",
+              "EndDate",
+              "Person",
+              "",
+              "Technical Lead",
+              "Delivery Lead",
+              "Client Partner",
+              "Executive Sponsor"
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "FALSE",
+              "FALSE",
+              "FALSE",
+              "FALSE"
+            ],
+            [
+              "Client ONE",
+              "Work Stream ONE",
+              "2019-05-02",
+              "2019-06-06",
+              "Yusuf Sheikh",
+              "",
+              "TRUE",
+              "TRUE",
+              "TRUE",
+              "TRUE"
+            ],
+            [
+              "Client TWO",
+              "Work Stream ONE",
+              "2019-05-01",
+              "2019-10-31",
+              "George Schena",
+              "",
+              "TRUE",
+              "TRUE",
+              "TRUE",
+              "TRUE"
+            ],
+            [
+              "Client TWO",
+              "Work Stream ONE",
+              "2019-05-01",
+              "2019-10-31",
+              "Maysa Kanoni",
+              "",
+              "FALSE",
+              "FALSE",
+              "FALSE",
+              "FALSE"
+            ],
+            [
+              "Client TWO",
+              "Work Stream TWO",
+              "2019-07-15",
+              "2019-09-02",
+              "Maysa Kanoni",
+              "",
+              "TRUE",
+              "TRUE",
+              "TRUE",
+              "TRUE"
+            ]
+          ]
+        }
+    http_version: 
+  recorded_at: Tue, 09 Jul 2019 10:21:44 GMT
+recorded_with: VCR 5.0.0

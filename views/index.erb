@@ -62,7 +62,7 @@
           </div>
           <div class="d-flex w-100 justify-content-between">
             <a class="list-group-item list-group-item-action mb-3">
-              <% clients[:project].group_by { |d| d[:project] }.each do |projects, people| %>
+              <% clients[:project].group_by { |d| d[:project_name] }.each do |projects, people| %>
                 <h5 class="mb-1 mt-0">
                   <%= projects %>
                   <% people.each do |dates| %>
