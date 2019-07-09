@@ -67,9 +67,12 @@
                   <%= projects %>
                   <% people.each do |dates| %>
                     <div class="float-right">
-                      <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %> 
-                      <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to 
+                      <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %>
+                      <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to
                       <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
+                      <% if end_on - 30 < Date.today %>
+                        <p>Project ends in the next 30 days</p>
+                      <% end %>
                     </div>
                     <% break %>
                   <% end %>
@@ -79,16 +82,16 @@
                     <%= name %>
                   <% end %>
                   <% if person[:tech_lead] == 'TRUE' %>
-                    | <span class="badge badge-dark">Technical Lead</span>
+                    <span class="badge badge-dark">Technical Lead</span>
                   <% end %>
                   <% if person[:delivery_lead] == 'TRUE'%>
-                    | <span class="badge badge-danger">Delivery Lead</span>
+                    <span class="badge badge-danger">Delivery Lead</span>
                   <% end %>
                   <% if person[:client_partner] == 'TRUE'%>
-                    | <span class="badge badge-warning">Client Partner</span>
+                    <span class="badge badge-warning">Client Partner</span>
                   <% end %>
                   <% if person[:exec_sponsor] == 'TRUE'%>
-                    | <span class="badge badge-info">Executive Sponsor</span>
+                    <span class="badge badge-info">Executive Sponsor</span>
                   <% end %>
                   <br />
                 <% end %>

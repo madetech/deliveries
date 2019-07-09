@@ -25,6 +25,6 @@ class UseCase::ViewTeams
       }
     end
 
-    pp data.values
+    data.values
   end
 end
