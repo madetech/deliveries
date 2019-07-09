@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 require 'zeitwerk'
-require 'google/apis/sheets_v4'
-require 'googleauth'
-require 'webmock/rspec'
 require 'vcr'
 require 'dotenv/load'
 
@@ -23,4 +20,10 @@ RSpec.configure do |config|
     config.order = :random
     Kernel.srand config.seed
   end
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/test_double'
+  config.hook_into :webmock
+  config.ignore_request { |request| request.uri == 'https://www.googleapis.com/oauth2/v4/token' }
 end
