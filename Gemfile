@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+ruby '2.6.3'
+
 gem 'dotenv'
 gem 'google-api-client'
 gem 'rspec'
