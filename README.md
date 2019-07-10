@@ -1,3 +1,5 @@
 # Teams
 
-This project allows employees at Made Tech to view which projects are currently running as well as the team members of that project. The project uses Sinatra for the frontend, and pulls in data from big query which is then presented in Google Sheets which acts as the backend database, we used Google Sheets as we wanted to allow operations to use this from the get go and have very little time having to onboard them.
+Employees at Made Tech are able to view which deliveries are currently running as well as the team members for their particular work stream. 
+
+[Sinatra](http://sinatrarb.com) is used for the frontend. Data from [BigQuery](https://cloud.google.com/bigquery) is presented in [Google Sheets](https://www.google.com/sheets/about). Acting as the backend database, Google Sheets allows the Operations team to use this effectively while reducing time for onboarding.
