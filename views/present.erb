@@ -45,66 +45,86 @@
     </div>
 
     <main class="container mb-5 mt-5">
-      <% data.each do |clients, _values| %>
-      <% if clients[:client].nil? || clients[:client] == '' %>
-      <% else %>
-        <div class="target">
-          <div class="list-group">
-            <a class="list-group-item list-group-item-action bg-success">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 mt-1 text-white">
-                  <%= clients[:client] %>
-                </h5>
-              </div>
-            </a>
-          </div>
-          <div class="d-flex w-100 justify-content-between">
-            <a class="list-group-item list-group-item-action mb-3">
-              <% clients[:project].group_by { |d| d[:project_name] }.each do |projects, people| %>
+      <% data.each do |clients, values| %>
+        <% unless clients[:client].nil? || clients[:client] == '' %>
+          <div class="target">
+            <div class="list-group">
+              <a class="list-group-item list-group-item-action bg-success">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1 mt-1 text-white">
+                    <%= clients[:client] %>
+                  </h5>
+                </div>
+              </a>
+            </div>
+            <div class="d-flex w-100 justify-content-between">
+              <a class="list-group-item list-group-item-action mb-3">
                 <h5 class="mb-1 mt-0">
-                  <%= projects %>
-                  <% people.each do |dates| %>
-                    <div class="float-right">
-                      <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %>
-                      <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to
-                      <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
-                      <% if end_on < Date.today %>
-                        <div class="alert alert-danger text-center">
-                          Project has ended
-                        </div>
-                      <% elsif Date.today > end_on - 30 && end_on + 30 > Date.today%>
-                        <div class="alert alert-warning text-center">
-                          Project is ending
-                        </div>
-                      <% end %>
-                    </div>
-                    <% break %>
-                  <% end %>
+                  Account Structure
+                  <br />
                 </h5>
-                <% people.each do |person| %>
-                  <% person[:person].each do |name| %>
-                    <%= name %>
+                <% clients[:project].each do |x| %>
+                  <% unless x[:exec_sponsor].nil? || x[:exec_sponsor].empty? %>
+                    <%= x[:exec_sponsor] %> <span class="badge badge-dark">Executive Sponsor</span>
+                    <br />
                   <% end %>
-                  <% if person[:tech_lead] == 'TRUE' %>
-                    <span class="badge badge-dark">Technical Lead</span>
+                  <% unless x[:client_partner].nil? || x[:client_partner].empty? %>
+                  <%= x[:client_partner] %> <span class="badge badge-info">Client Lead</span>
+                  <br />
                   <% end %>
-                  <% if person[:delivery_lead] == 'TRUE'%>
-                    <span class="badge badge-danger">Delivery Lead</span>
+                  <% if x[:delivery_lead] == 'TRUE' && x[:tech_lead] == 'TRUE' %>
+                    <%= x[:person][0] %> <span class="badge badge-danger">Delivery Lead</span> <span class="badge badge-warning">Technical Lead</span>
+                    <br />
+                  <% elsif x[:delivery_lead] == 'TRUE' %>
+                    <%= x[:person][0] %> <span class="badge badge-danger">Delivery Lead</span>
+                    <br />
+                  <% elsif x[:tech_lead] == 'TRUE' %>
+                    <%= x[:person][0] %> <span class="badge badge-warning">Technical Lead</span>
+                    <br />
                   <% end %>
-                  <% if person[:client_partner] == 'TRUE'%>
-                    <span class="badge badge-warning">Client Partner</span>
-                  <% end %>
-                  <% if person[:exec_sponsor] == 'TRUE'%>
-                    <span class="badge badge-info">Executive Sponsor</span>
+                <% end %>
+                <br />
+                <% clients[:project].group_by { |d| d[:project_name] }.each do |projects, people| %>
+                  <h5 class="mb-1 mt-0">
+                    <%= projects %>
+                    <% people.each do |dates| %>
+                      <div class="float-right">
+                        <% unless dates[:start_date].empty? && dates[:end_date].empty? %>
+                          <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %>
+                          <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to
+                          <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
+                          <% if end_on < Date.today %>
+                            <div class="alert alert-danger text-center">
+                              Project has ended
+                            </div>
+                          <% elsif Date.today > end_on - 30 && end_on + 30 > Date.today%>
+                            <div class="alert alert-warning text-center">
+                              Project is ending
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <% break %>
+                    <% end %>
+                  </h5>
+                  <% people.each do |person| %>
+                    <% person[:person].each do |name| %>
+                      <%= name %>
+                    <% end %>
+                    <% if person[:delivery_lead] == 'TRUE'%>
+                      <span class="badge badge-danger">Delivery Lead</span>
+                    <% end %>
+                    <% if person[:tech_lead] == 'TRUE' %>
+                      <span class="badge badge-warning">Technical Lead</span>
+                    <% end %>
+                    <br />
                   <% end %>
                   <br />
                 <% end %>
-                <br />
-              <% end %>
-            </a>
+              </a>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
       <% end %>
     </main>
 
