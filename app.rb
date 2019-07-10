@@ -16,7 +16,7 @@ gateway = Sinatra::Application.environment == :development ? GoogleSheetsSimulat
 
 get '/' do
   response = UseCase::ViewTeams.new(
-    google_spreadsheet_gateway: Gateway::GoogleSpreadsheet.new
+    google_spreadsheet_gateway: gateway
   ).execute
   erb :index, locals: { data: response }
 end
