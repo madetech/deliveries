@@ -50,6 +50,8 @@
       </div>
       <br />
       <% data.each do |clients, _values| %>
+      <% if clients[:client].nil? || clients[:client] == '' %>
+      <% else %>
         <div class="target">
           <div class="list-group">
             <a class="list-group-item list-group-item-action bg-success">
@@ -106,6 +108,7 @@
             </a>
           </div>
         </div>
+      <% end %>
       <% end %>
     </main>
 
