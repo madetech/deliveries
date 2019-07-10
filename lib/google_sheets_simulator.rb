@@ -12,8 +12,8 @@ class GoogleSheetsSimulator
         '',
         'TRUE',
         'TRUE',
-        'TRUE',
-        'TRUE'
+        'Chris Blackburn',
+        'Emily Thomas'
       ],
       [
         'Client TWO',
@@ -24,8 +24,8 @@ class GoogleSheetsSimulator
         '',
         'TRUE',
         'TRUE',
-        'TRUE',
-        'TRUE'
+        'Chris Blackburn',
+        'Rory Macdonald'
       ],
       [
         'Client TWO',
@@ -36,8 +36,8 @@ class GoogleSheetsSimulator
         '',
         'FALSE',
         'FALSE',
-        'FALSE',
-        'FALSE'
+        '',
+        ''
       ],
       [
         'Client TWO',
@@ -48,8 +48,8 @@ class GoogleSheetsSimulator
         '',
         'TRUE',
         'TRUE',
-        'TRUE',
-        'TRUE'
+        '',
+        ''
       ]
     ]
   end
