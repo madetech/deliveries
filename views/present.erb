@@ -60,7 +60,7 @@
             <div class="d-flex w-100 justify-content-between">
               <a class="list-group-item list-group-item-action mb-3">
                 <h5 class="mb-1 mt-0">
-                  Account Structure 
+                  Account Structure
                   <br />
                 </h5>
                 <% clients[:project].each do |x| %>
@@ -73,13 +73,13 @@
                   <br />
                   <% end %>
                   <% if x[:delivery_lead] == 'TRUE' && x[:tech_lead] == 'TRUE' %>
-                    <%= x[:person][0] %> <span class="badge badge-danger">Delivery Lead</span> <span class="badge badge-warning">Technical Lead</span>
+                    <%= x[:person][0] %> <span class="badge badge-success">Delivery Lead</span> <span class="badge badge-secondary">Technical Lead</span>
                     <br />
                   <% elsif x[:delivery_lead] == 'TRUE' %>
-                    <%= x[:person][0] %> <span class="badge badge-danger">Delivery Lead</span>
+                    <%= x[:person][0] %> <span class="badge badge-success">Delivery Lead</span>
                     <br />
                   <% elsif x[:tech_lead] == 'TRUE' %>
-                    <%= x[:person][0] %> <span class="badge badge-warning">Technical Lead</span>
+                    <%= x[:person][0] %> <span class="badge badge-secondary">Technical Lead</span>
                     <br />
                   <% end %>
                 <% end %>
@@ -124,10 +124,10 @@
                       <%= name %>
                     <% end %>
                     <% if person[:delivery_lead] == 'TRUE'%>
-                      <span class="badge badge-danger">Delivery Lead</span>
+                      <span class="badge badge-success">Delivery Lead</span>
                     <% end %>
                     <% if person[:tech_lead] == 'TRUE' %>
-                      <span class="badge badge-warning">Technical Lead</span>
+                      <span class="badge badge-secondary">Technical Lead</span>
                     <% end %>
                     <br />
                   <% end %>
