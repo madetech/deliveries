@@ -95,19 +95,19 @@
                           <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
                           <% length = (end_on - start_on).to_f %>
                           <% days_left = (end_on - Date.today).to_f %>
-                          <% difference = (days_left / length * 100).to_i %>
+                          <% difference = ((length - days_left) / length * 100).to_i %>
                           <% if difference < 0 %>
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          <% elsif difference > 100 %>
                             <div class="progress">
                               <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                          <% elsif difference > 100 %>
-                              <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
                           <% else %>
-                              <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <%= difference %>%" aria-valuenow="<%= difference %>" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
+                            <div class="progress">
+                              <div class="progress-bar bg-success" role="progressbar" style="width: <%= difference %>%" aria-valuenow="<%= difference %>" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                           <% end %>
                         <% end %>
                       </div>
