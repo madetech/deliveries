@@ -93,18 +93,20 @@
                           <% start_on, end_on = Date.strptime(dates[:start_date], '%Y-%m-%d'), Date.strptime(dates[:end_date], '%Y-%m-%d') %>
                           <%= start_on.day %> <%= Date::MONTHNAMES[start_on.month] %> <%= start_on.year %> to
                           <%= end_on.day %> <%= Date::MONTHNAMES[end_on.month] %> <%= end_on.year %>
-
                           <% length = (end_on - start_on).to_f %>
                           <% days_left = (end_on - Date.today).to_f %>
                           <% difference = (days_left / length * 100).to_i %>
-
-                          <% if Date.parse(end_on.to_s) < Date.today %>
+                          <% if difference < 0 %>
                             <div class="progress">
                               <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <% else %>
+                          <% elsif difference > 100 %>
                               <div class="progress">
-                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                          <% else %>
+                              <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <%= difference %>%" aria-valuenow="<%= difference %>" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                           <% end %>
                         <% end %>
