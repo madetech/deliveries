@@ -118,12 +118,6 @@
                     <% person[:person].each do |name| %>
                       <%= name %>
                     <% end %>
-                    <% if person[:delivery_lead] == 'TRUE'%>
-                      <span class="badge badge-success">Delivery Lead</span>
-                    <% end %>
-                    <% if person[:tech_lead] == 'TRUE' %>
-                      <span class="badge badge-secondary">Technical Lead</span>
-                    <% end %>
                     <br />
                   <% end %>
                   <br />
