@@ -12,6 +12,10 @@ loader.setup
 
 before { loader.reload }
 
+use Rack::Auth::Basic, "Protected Area" do |username, password|
+  username == ENV['USERNAME'] && password == ENV['PASSWORD']
+end
+
 get '/' do
   gateway = Sinatra::Application.environment == :development ? GoogleSheetsSimulator.new : Gateway::GoogleSpreadsheet.new
 
